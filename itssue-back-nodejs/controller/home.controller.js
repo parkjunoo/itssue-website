@@ -1,8 +1,5 @@
-const users = {
-    id: ["park"],
-    password: ["1234"]
-}
-
+const User = require("../models/User");
+const UserStorage = require("../models/UserStorage");
 
 const view = {
     home: (req, res) => {
@@ -16,21 +13,9 @@ const view = {
 
 const process = {
     login: (req, res) => {
-        const id = req.body.id;
-        const password = req.body.password;
-
-        if (users.id.includes(id)) {
-            const idx = users.id.indexOf(id);
-            if (users.password[idx] === password) {
-                return res.json({
-                    success: true,
-                });
-            }
-        }
-        return res.json({
-            success: false,
-            msg: "로그인에 실패하였습니다."
-        })
+        const user = new User(req.body);
+        const response = user.login();
+        return res.json(response);
     }
 }
 
