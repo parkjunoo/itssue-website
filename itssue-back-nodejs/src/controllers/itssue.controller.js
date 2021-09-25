@@ -1,5 +1,6 @@
-const User = require("../models/User");
-const UserStorage = require("../models/UserStorage");
+const Keyword = require('../models/keyword.model.js');
+const Ranking = require('../models/ranking.model.js');
+
 
 const view = {
     home: (req, res) => {
